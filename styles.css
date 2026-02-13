@@ -1,0 +1,97 @@
+/*Global resets and styles*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*body = domino table*/
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"Trebuchet MS",Arial, sans-serif;
+    /*background-color: #14532;*/
+    color: #f8fafc;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/*main title*/
+h1{
+    margin:20px 0 10px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: #1e293b;
+}
+/*Inputs*/
+input{
+    width: 90%;
+    max-width: 300px;
+    margin: 8px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+}
+/*team cards (domino pieces)*/
+div{
+    width: 92%;
+    max-width: 420px;
+    margin: 16px auto;
+    background: linear-gradient(145deg, #1e293b, #020617);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+h2{
+    margin: 8px 0;
+    font-size: 24px;
+}   
+
+p{
+    font-size: 56px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+button{
+    padding: 14px 22px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.1s;
+}
+
+div button {
+    background: linear-gradient(to right, #22c55e, #4ade80);
+    color: #022c22;
+    font-weight: bold;
+}
+
+#resetButton {
+    background: linear-gradient(to right, #ef4444, #dc2626);
+    color: white;
+    width: 92%;
+    max-width: 420px;
+    margin-top: 20px;
+
+}
+
+#winnerMessage {
+    font-size: 26px;
+    font-weight: bold;
+    color: #fde047;
+    margin:20px 0;
+}   
+
+/* mobile spacing */
+@media (max-width: 480px) {
+    p{
+        font-size: 48px;
+    }
+    
+}

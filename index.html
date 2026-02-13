@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- Document type declaration -->
+<html lang="en">
+  <!-- Root element with language set to English -->
+  <head>
+    <!-- Head section starts -->
+    <meta charset="UTF-8" />
+    <!-- Character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Responsive viewport -->
+    <title>DOM-Tracker</title>
+    <!-- Page title -->
+    <input
+      id="winningScoreInput"
+      type="number"
+      placeholder="winning Score"
+      value="5"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- External CSS stylesheet -->
+  </head>
+  <!-- Head section ends -->
+  <body>
+    <!-- Body section starts -->
+    <!-- Page content goes here -->
+    <h1>DOM-Tracker</h1>
+
+    <!-- login and signup section -->
+    <div id="authSection">
+      <h2>login / Sign Up</h2>
+
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+
+      <button id="loginButton">Login</button>
+      <button id="signupButton">Sign Up</button>
+    </div>
+
+    <!-- main app section -->
+
+    <div id="appSection" style="display: none">
+      <div id="profilesection">
+        <h2 id="ProfileUsename"></h2>
+        <p>Games Played: <span id="gamesPlayed">0</span></p>
+        <button id="logoutButton">Logout</button>
+      </div>
+
+      <!--divider for both team names-->
+      <h1>DOM-Tracker</h1>
+      <div>
+        <input type="text" id="teamA-name" placeholder="Enter Team A Name" />
+        <h2 id="teamATitle">Team A</h2>
+        <p id="teamA-score">0</p>
+        <button id="teamA-addPoint">Add Point</button>
+      </div>
+
+      <div>
+        <input type="text" id="teamB-name" placeholder="Enter Team B Name" />
+        <h2 id="teamBTitle">Team B</h2>
+        <p id="teamB-score">0</p>
+        <button id="teamB-addPoint">Add Point</button>
+      </div>
+
+      <div>
+        <button id="reset-button">Reset Scores</button>
+      </div>
+      <!--divider for winner message-->
+      <div>
+        <p id="winnerMessage"></p>
+      </div>
+      <!--button reset line-->
+      <script src="script.js"></script>
+      <!-- External JavaScript file -->
+    </div>
+  </body>
+  <!-- Body section ends -->
+</html>
+<!-- Root element ends -->
