@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum PostType {
+  MATCH
+}
+
+enum WinnerSide {
+  A
+  B
+  TIE
+}
+
+enum Side {
+  A
+  B
+}
+
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  displayName  String
+  bio          String?
+  avatarUrl    String?
+  passwordHash String
+
+  gamesPlayed Int @default(0)
+  wins        Int @default(0)
+  losses      Int @default(0)
+  totalPoints Int @default(0)
+
+  createdAt DateTime @default(now())
+
+  posts     Post[]
+  likes     Like[]
+  comments  Comment[]
+  sessions  Session[]
+
+  following Follow[] @relation("Following")
+  followers Follow[] @relation("Followers")
+}
+
+model Follow {
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+
+  follower  User @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  following User @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followingId])
+  @@index([followingId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  authorId  String
+  type      PostType @default(MATCH)
+  notes     String?
+  photoUrl  String?
+  createdAt DateTime @default(now())
+
+  author   User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  match    Match?
+  likes    Like[]
+  comments Comment[]
+
+  @@index([authorId, createdAt])
+}
+
+model Match {
+  id           String     @id @default(cuid())
+  postId       String     @unique
+  teamAName    String
+  teamBName    String
+  authorSide   Side
+  scoreA       Int
+  scoreB       Int
+  winningScore Int
+  winner       WinnerSide
+  playedAt     DateTime   @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+  @@index([postId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  postId    String
+  authorId  String
+  body      String
+  createdAt DateTime @default(now())
+
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([postId, createdAt])
+  @@index([authorId])
+}
